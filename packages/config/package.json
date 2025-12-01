@@ -1,0 +1,21 @@
+{
+    "name": "@repo/config",
+    "version": "0.0.0",
+    "private": true,
+    "files": [
+        "eslint.config.mjs",
+        "tsconfig.json",
+        "tailwind.config.ts"
+    ],
+    "exports": {
+        "./eslint": "./eslint.config.mjs",
+        "./tsconfig.json": "./tsconfig.json",
+        "./tailwind.config": "./tailwind.config.ts"
+    },
+    "peerDependencies": {
+        "typescript": "^5",
+        "eslint": "^9",
+        "prettier": "^3",
+        "tailwindcss": "^3.4.1"
+    }
+}

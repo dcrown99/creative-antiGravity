@@ -1,0 +1,26 @@
+import { defineConfig, devices } from '@playwright/test';
+
+const PORT = 3003;
+const BASE_URL = `http://localhost:${PORT}`;
+
+export default defineConfig({
+    testDir: './e2e',
+    fullyParallel: true,
+    retries: 0,
+    reporter: 'list',
+    use: {
+        baseURL: BASE_URL,
+        trace: 'on-first-retry',
+    },
+    projects: [
+        {
+            name: 'chromium',
+            use: { ...devices['Desktop Chrome'] },
+        },
+    ],
+    webServer: {
+        command: 'pnpm dev',
+        url: BASE_URL,
+        reuseExistingServer: !process.env.CI,
+    },
+});

@@ -1,0 +1,51 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#000000" rx="80"/>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B9D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#C06FFF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4FACFE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00F2FE;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFA62E;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFEB3B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main manga panel outline (white border) -->
+  <rect x="80" y="80" width="352" height="352" fill="none" stroke="#ffffff" stroke-width="6" rx="8"/>
+  
+  <!-- Top left panel -->
+  <rect x="100" y="100" width="140" height="140" fill="url(#gradient1)" rx="4"/>
+  <line x1="115" y1="140" x2="225" y2="120" stroke="#ffffff" stroke-width="3" opacity="0.6"/>
+  <line x1="115" y1="155" x2="225" y2="135" stroke="#ffffff" stroke-width="3" opacity="0.6"/>
+  <line x1="115" y1="170" x2="225" y2="150" stroke="#ffffff" stroke-width="3" opacity="0.6"/>
+  
+  <!-- Top right panel -->
+  <rect x="260" y="100" width="152" height="140" fill="url(#gradient2)" rx="4"/>
+  <circle cx="336" cy="155" r="25" fill="#ffffff" opacity="0.3"/>
+  <circle cx="336" cy="155" r="15" fill="#ffffff" opacity="0.5"/>
+  <circle cx="336" cy="155" r="8" fill="#ffffff" opacity="0.8"/>
+  
+  <!-- Bottom large panel -->
+  <rect x="100" y="260" width="312" height="152" fill="url(#gradient3)" rx="4"/>
+  
+  <!-- Speed lines effect in bottom panel -->
+  <g opacity="0.4">
+    <line x1="256" y1="300" x2="150" y2="330" stroke="#ffffff" stroke-width="4"/>
+    <line x1="256" y1="315" x2="150" y2="345" stroke="#ffffff" stroke-width="4"/>
+    <line x1="256" y1="330" x2="150" y2="360" stroke="#ffffff" stroke-width="4"/>
+    <line x1="256" y1="345" x2="150" y2="375" stroke="#ffffff" stroke-width="4"/>
+    <line x1="256" y1="360" x2="150" y2="390" stroke="#ffffff" stroke-width="4"/>
+  </g>
+  
+  <!-- Manga panel dividers -->
+  <line x1="256" y1="100" x2="256" y2="240" stroke="#ffffff" stroke-width="6"/>
+  <line x1="100" y1="256" x2="412" y2="256" stroke="#ffffff" stroke-width="6"/>
+</svg>

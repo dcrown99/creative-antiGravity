@@ -1,0 +1,84 @@
+
+> @repo/ui@0.0.0 build-storybook C:\Users\koume\Downloads\code\packages\ui
+> storybook build
+
+[1m@storybook/core v8.6.14
+[22m
+info => Cleaning outputDir: [36mstorybook-static[39m
+[33mThe CJS build of Vite's Node API is deprecated. See https://vite.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+info => Loading presets
+info => Building manager..
+X [ERROR] Could not resolve "storybook/manager-api"
+
+    ../../node_modules/@storybook/addon-onboarding/dist/manager.js:11:75:
+      11 │ ...alChecklistStore as checklistStore } from "storybook/manager-api";
+         ╵                                              ~~~~~~~~~~~~~~~~~~~~~~~
+
+  The path "./manager-api" is not exported by package "storybook":
+
+    ../../node_modules/storybook/package.json:28:13:
+      28 │   "exports": {
+         ╵              ^
+
+  You can mark the path "storybook/manager-api" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "storybook/theming"
+
+    ../../node_modules/@storybook/addon-onboarding/dist/_browser-chunks/Survey-RTIK67MQ.js:11:39:
+      11 │ import { ThemeProvider, convert } from "storybook/theming";
+         ╵                                        ~~~~~~~~~~~~~~~~~~~
+
+  The path "./theming" is not exported by package "storybook":
+
+    ../../node_modules/storybook/package.json:28:13:
+      28 │   "exports": {
+         ╵              ^
+
+  You can mark the path "storybook/theming" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "storybook/theming"
+
+    ../../node_modules/@storybook/addon-onboarding/dist/_browser-chunks/chunk-BTSM33XX.js:4:23:
+      4 │ import { styled } from "storybook/theming";
+        ╵                        ~~~~~~~~~~~~~~~~~~~
+
+  The path "./theming" is not exported by package "storybook":
+
+    ../../node_modules/storybook/package.json:28:13:
+      28 │   "exports": {
+         ╵              ^
+
+  You can mark the path "storybook/theming" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "storybook/theming"
+
+    ../../node_modules/@storybook/addon-onboarding/dist/_browser-chunks/Onboarding-4UKVZPT6.js:856:107:
+      856 │ ... styled as styled4, themes as themes2 } from "storybook/theming";
+          ╵                                                 ~~~~~~~~~~~~~~~~~~~
+
+  The path "./theming" is not exported by package "storybook":
+
+    ../../node_modules/storybook/package.json:28:13:
+      28 │   "exports": {
+         ╵              ^
+
+  You can mark the path "storybook/theming" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+[38;2;241;97;97mError: Build failed with 4 errors:
+../../node_modules/@storybook/addon-onboarding/dist/_browser-chunks/Onboarding-4UKVZPT6.js:856:107: ERROR: Could not resolve "storybook/theming"
+../../node_modules/@storybook/addon-onboarding/dist/_browser-chunks/Survey-RTIK67MQ.js:11:39: ERROR: Could not resolve "storybook/theming"
+../../node_modules/@storybook/addon-onboarding/dist/_browser-chunks/chunk-BTSM33XX.js:4:23: ERROR: Could not resolve "storybook/theming"
+../../node_modules/@storybook/addon-onboarding/dist/manager.js:11:75: ERROR: Could not resolve "storybook/manager-api"[39m
+    at failureErrorWithLog (C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:1467:15)
+    at C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:926:25
+    at runOnEndCallbacks (C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:1307:45)
+    at buildResponseToResult (C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:924:7)
+    at C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:951:16
+    at responseCallbacks.<computed> (C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:603:9)
+    at handleIncomingPacket (C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:658:12)
+    at Socket.readFromStdout (C:\Users\koume\Downloads\code\node_modules\esbuild\lib\main.js:581:7)
+    at Socket.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+C:\Users\koume\Downloads\code\packages\ui:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @repo/ui@0.0.0 build-storybook: `storybook build`
+Exit status 1

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  auto-clipper-web:
+    container_name: auto-clipper-web
+    build:
+      context: ../../
+      dockerfile: apps/auto-clipper-web/Dockerfile
+    ports:
+      # Host:3003 -> Container:3000
+      - "3003:3000"
+    volumes:
+      - ./:/app/apps/auto-clipper-web
+      - ../../packages:/app/packages
+      - /app/node_modules
+      - /app/apps/auto-clipper-web/node_modules
+    environment:
+      # ブラウザから見たAPIのURL (Host側ポート)
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+    restart: unless-stopped

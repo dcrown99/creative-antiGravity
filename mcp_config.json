@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "serena": {
+            "command": "cmd",
+            "args": [
+                "/c",
+                "c:\\Users\\koume\\Downloads\\code\\.venv_serena_311\\Scripts\\activate.bat && serena start-mcp-server"
+            ]
+        }
+    }
+}

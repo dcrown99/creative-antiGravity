@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Asset {
+  id               String   @id @default(uuid())
+  ticker           String?
+  name             String
+  type             String
+  account          String?
+  quantity         Decimal?
+  avgCost          Decimal?
+  currency         String
+  currentPrice     Decimal?
+  dividendRate     Decimal?
+  dividendYield    Decimal?
+  nextDividendDate String?
+  sector           String?
+  manualPrice      Decimal?
+  balance          Decimal?
+  description      String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  isArchived       Boolean  @default(false)
+
+  transactions     Transaction[]
+  dividends        Dividend[]
+
+  @@index([type])
+  @@index([isArchived, createdAt])
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  date        String
+  amount      Decimal
+  type        String
+  category    String
+  description String?
+  assetId     String?
+  createdAt   DateTime @default(now())
+
+  asset       Asset?   @relation(fields: [assetId], references: [id])
+
+  @@index([date, createdAt])
+  @@index([type, date])
+  @@index([assetId])
+}
+
+model Dividend {
+  id        String   @id @default(uuid())
+  assetId   String
+  date      String
+  amount    Decimal
+  currency  String
+
+  asset     Asset    @relation(fields: [assetId], references: [id])
+
+  @@index([date])
+  @@index([assetId])
+}
+
+model HistoryEntry {
+  id         String   @id @default(uuid())
+  date       String   @unique
+  totalValue Decimal
+  totalCost  Decimal
+  totalPL    Decimal
+  data       String?  // JSON string for detailed breakdown (e.g. by asset type)
+}
+
+model AnalysisLog {
+  id      String   @id @default(uuid())
+  date    String
+  title   String
+  summary String
+  script  String
+  sources String   // JSON string
+}
+
+model CategoryRule {
+  id       String @id @default(uuid())
+  pattern  String @unique
+  category String
+}

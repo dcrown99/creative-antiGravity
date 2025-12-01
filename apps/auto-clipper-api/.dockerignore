@@ -1,0 +1,7 @@
+__pycache__
+*.pyc
+.env
+.git
+temp/
+venv/
+jobs.db

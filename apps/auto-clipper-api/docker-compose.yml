@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  # [1] API Server (Request Handler)
+  auto-clipper-api:
+    container_name: auto-clipper-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+      - ./cookies.txt:/app/cookies.txt
+      - ./output:/app/output
+      - ./temp:/app/temp
+    environment:
+      - FINAL_OUTPUT_DIR=/app/output
+      - WATCHFILES_FORCE_POLLING=true
+      - REDIS_URL=redis://redis:6379/0
+      - IMAGEMAGICK_BINARY=/usr/bin/convert
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # [2] Worker (Video Processor) - MISSING PIECE RESTORED
+  auto-clipper-worker:
+    container_name: auto-clipper-worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # APIと同じ環境で、Celeryワーカーとして起動
+    command: celery -A celery_app worker --loglevel=info --concurrency=1
+    volumes:
+      # APIと同じファイルを共有 (コード, Cookie, 出力先, 一時ファイル)
+      - ./:/app
+      - ./cookies.txt:/app/cookies.txt
+      - ./output:/app/output
+      - ./temp:/app/temp
+    environment:
+      - FINAL_OUTPUT_DIR=/app/output
+      - REDIS_URL=redis://redis:6379/0
+      - IMAGEMAGICK_BINARY=/usr/bin/convert
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # [3] Message Broker
+  redis:
+    image: redis:7-alpine
+    container_name: auto-clipper-redis
+    ports:
+      - "6379:6379"
+    restart: always

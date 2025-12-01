@@ -1,0 +1,42 @@
+# DriveStream
+gdrive_mount/
+config/rclone/
+
+# Dependencies
+node_modules
+**/node_modules
+venv
+**/venv
+.venv
+**/.venv
+
+# Build outputs
+.next
+.turbo
+dist
+out
+build
+
+# Python
+__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# System & IDE
+.git
+.env
+.DS_Store
+**/.DS_Store
+.vscode
+.idea
+
+# Temporary files
+temp/
+**/temp/
+tmp/
+**/tmp/
+*.mp4
+*.mkv
+*.avi
+*.mov

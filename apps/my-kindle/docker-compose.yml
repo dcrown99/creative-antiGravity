@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  my-kindle:
+    container_name: my-kindle
+    build:
+      # Fix 1: Monorepoのルートコンテキストを使用
+      context: ../../
+      dockerfile: apps/my-kindle/Dockerfile
+    ports:
+      # Fix 2: ポート競合回避 (3001 -> 3002)
+      - "3002:3000"
+    volumes:
+      # Fix 3: コンテナ内の正しい WORKDIR にマウント
+      - ./:/app/apps/my-kindle
+      - ../../packages:/app/packages
+      - /app/node_modules
+      - /app/apps/my-kindle/node_modules
+
+      # ユーザー定義のライブラリマウント (既存設定維持)
+      - "H:/漫画:/app/library"
+
+      # Next.js のキャッシュ永続化 (ビルド高速化)
+      - ./.next:/app/apps/my-kindle/.next
+
+    environment:
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3002
+      - MANGA_DIR=/app/library
+      - NODE_ENV=development
+      # Windowsでのホットリロード安定化
+      - WATCHPACK_POLLING=true
+
+    restart: unless-stopped

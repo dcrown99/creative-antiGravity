@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  money-master:
+    container_name: money-master
+    build:
+      context: ../../
+      dockerfile: apps/money-master/Dockerfile
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./:/app/apps/money-master
+      - ../../packages:/app/packages
+      - /app/node_modules
+      - /app/apps/money-master/node_modules
+      - ./prisma:/app/apps/money-master/prisma
+    environment:
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3001
+      - DATABASE_URL=file:./dev.db
+      - NODE_ENV=development
+      - WATCHPACK_POLLING=true
+    command: sh -c "npx prisma migrate deploy && pnpm dev"
+    restart: unless-stopped
+
+  # [RESTORED] Log Viewer
+  dozzle:
+    container_name: log_viewer
+    image: amir20/dozzle:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8888:8080"
+    restart: always
